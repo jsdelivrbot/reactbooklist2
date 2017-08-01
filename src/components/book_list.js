@@ -1,17 +1,27 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const BookList = (props) => {
+class BookList extends Component {
 
-  const renderList = props.books.map((book) => {
-    return
-      <li>{book.title}</li>
-  });
+  renderList() {
+    return this.props.books.map((book, i) => {
+      return (
+        <li
+          key={i}
+          onClick={function() {this.selectBook(book)}}>
+          <h3>{book.title}</h3>
+        </li>
+      )
+    });
+  }
 
-    return (
-      <ul className="book-list">
-        {renderList}
-      </ul>
-    );
-};
+
+  render() {
+      return (
+        <ul className="book-list">
+          {this.renderList()}
+        </ul>
+      );
+    }
+}
 
 export default BookList;

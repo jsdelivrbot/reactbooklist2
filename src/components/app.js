@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import BookList from './book_list';
+import BookDetail from './book_detail';
 
-const bookData = {
-  books: [
+const bookData = [
   { title: 'Emotional Intelligence',
     author: 'Travis Bradberry and Jean Greaves',
     keywords: 'emotions, awareness, adapt',
@@ -23,21 +23,34 @@ const bookData = {
     keywords: 'craftmanship, discipline, techniques',
     description: "Great software is something to marvel at: powerful, elegant, functional, a pleasure to work with as both a developer and as a user. Great software isn’t written by machines. It is written by professionals with an unshakable commitment to craftsmanship. The Clean Coder will help you become one of them–and earn the pride and fulfillment that they alone possess."
     }
-]};
+];
 
 export default class App extends Component {
 
   constructor(props) {
     super(props);
 
-    this.state = bookData;
+    this.state = {
+      books: bookData,
+      selectedBook: bookData[0]
+    };
+
+    this.selectBook = this.selectBook.bind(this);
+
   }
 
+  selectBook(book) {
+    this.setState({
+      books: bookData,
+      selectedBook: book
+    });
+  }
 
   render() {
     return (
       <div className="book-app">
         <BookList books={this.state.books} />
+        <BookDetail book={this.state.selectedBook} />
       </div>
     );
   }
