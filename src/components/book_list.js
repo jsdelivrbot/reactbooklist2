@@ -7,7 +7,7 @@ class BookList extends Component {
       return (
         <li
           key={i}
-          onClick={function() {this.selectBook(book)}}>
+          onClick={function() {this.props.selectBook(book)}}>
           <h3>{book.title}</h3>
         </li>
       )
